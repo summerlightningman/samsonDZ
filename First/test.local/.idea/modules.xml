@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../deb.il/.idea/debil.iml" filepath="$PROJECT_DIR$/../deb.il/.idea/debil.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../img.test.local/.idea/img.test.local.iml" filepath="$PROJECT_DIR$/../img.test.local/.idea/img.test.local.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/test.local.iml" filepath="$PROJECT_DIR$/.idea/test.local.iml" />
+    </modules>
+  </component>
+</project>

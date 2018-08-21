@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/second.task.iml" filepath="$PROJECT_DIR$/.idea/second.task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../zendWorks.mb/.idea/zendWorks.mb.iml" filepath="$PROJECT_DIR$/../zendWorks.mb/.idea/zendWorks.mb.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,6 @@
+AddDefaultCharset utf-8
+<IfModule dir_module>
+    DirectoryIndex index.php
+</IfModule>
+ErrorDocument 404 http://test.local/obrabotka404
+RemoveHandler application/x-httpd-php .jpeg .png .gif .tiff .js .asp .json
