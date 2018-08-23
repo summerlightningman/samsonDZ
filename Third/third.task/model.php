@@ -1,6 +1,9 @@
 <?php
 function invert($str = '')
 {
+    if (preg_match("<\d+>", $str)) {
+        throw new Exception('Строка должна содержать только буквы!');
+    }
     for ($i = 0; $i <= strlen($str) - 1; $i++) {
         $s = '';
         for ($j = 2; $j <= strlen($str) - $i; $j++) {
@@ -19,8 +22,9 @@ function generateArr($b)
 {
     $a = array();
     $b = explode(',', $b);
-    if (count($b) % 2 != 0 && count($b) != 1)
-        die ('Введите чётное количество цифр');
+    if (count($b) % 2 != 0 && count($b) > 1) {
+        throw new Exception('Массив должен иметь чётное количество цифр');
+    }
     $j = 0;
     for ($i = 0; $i < count($b) / 2; $i++) {
         $a[$i]['a'] = (int)$b[$j];
@@ -28,10 +32,14 @@ function generateArr($b)
         $j += 2;
     }
     return $a;
+
 }
 
 function createtab($a = array())
 {
+    if (count($a,1) == 3){
+        throw new Exception('Массив пуст');
+    }
     $tab = '<table>';
     foreach ($a as $value)
         $tab .= '<tr><td>' . $value['a'] . '</td><td>' . $value['b'] . '</td></tr>';
@@ -70,7 +78,7 @@ function sortm($a = array(array()), $key, $orientation)
         }
     }
     for ($i = 0; $i < count($a) - 1; $i++)  // проверка на возможный повтор сортировки
-        switch ($orientation){
+        switch ($orientation) {
             case 'up':
                 if ($a[$i][$key] > $a[$i + 1][$key])
                     goto start;

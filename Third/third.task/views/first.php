@@ -8,7 +8,13 @@
 
     <div id="result">
         <span>Результат</span>
-        <p><?php echo invert($s1);?></p>
+        <p><?php
+        try {
+            echo invert($s1);
+        } catch (Exception $e){
+            echo 'ОШИБКА!', $e->getMessage();
+        }
+            ?></p>
     </div>
 </form>
 </div>
