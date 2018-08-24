@@ -1,4 +1,7 @@
 <?php
+
+include_once 'start.php';
+
 function invert($str = '')
 {
     if (preg_match("<\d+>", $str)) {
@@ -37,7 +40,7 @@ function generateArr($b)
 
 function createtab($a = array())
 {
-    if (count($a,1) == 3){
+    if (count($a, 1) == 3) {
         throw new Exception('Массив пуст');
     }
     $tab = '<table>';
@@ -49,7 +52,6 @@ function createtab($a = array())
 
 function sortm($a = array(array()), $key, $orientation)
 {
-    $n = 0;
     start:
     for ($i = 0; $i < count($a) - 1; $i++) {
         switch ($orientation) {
@@ -89,5 +91,30 @@ function sortm($a = array(array()), $key, $orientation)
                 break;
         }
     return createtab($a);
+}
+
+function getProds()
+{
+    $result = host("SELECT * FROM `products`");
+    $rows = array();
+    $prices = array();
+    $products = array();
+    if ($result)
+        while ($row = mysqli_fetch_assoc($result))
+            $rows[] = $row;
+    else
+        die('Блин опять не повезло');
+
+    for ($i = 0; $i < count($rows); $i++) {
+        $name = $rows[$i]['name'];
+        $products[$i]['name'] = $name;
+        $result = host("SELECT `price` FROM `prices` WHERE `name` = '$name'");
+        while ($ro = mysqli_fetch_assoc($result))
+            $prices[] = $ro['price'];
+        $products[$i]['min_price'] = min($prices);
+        $products[$i]['max_price'] = max($prices);
+        $prices = array();
+    }
+    return $products;
 }
 

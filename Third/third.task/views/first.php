@@ -10,7 +10,7 @@
         <span>Результат</span>
         <p><?php
         try {
-            echo invert($s1);
+            echo invert($s);
         } catch (Exception $e){
             echo 'ОШИБКА!', $e->getMessage();
         }
