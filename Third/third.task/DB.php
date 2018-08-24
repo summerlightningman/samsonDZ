@@ -6,4 +6,6 @@
  * Time: 16:21
  */
 $prods = getProds();
+$name = $_GET['query'];
+
 include 'views/DB.php';
