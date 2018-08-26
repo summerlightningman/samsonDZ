@@ -8,5 +8,6 @@
 function host($query = ''){
     $connection = mysqli_connect('127.0.0.1', 'root', '', 'test_rubric') or die('Не удалось соединиться с сервером');
     $result = mysqli_query($connection, $query);
+    mysqli_close($connection);
     return $result;
 }

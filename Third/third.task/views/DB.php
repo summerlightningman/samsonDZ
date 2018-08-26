@@ -1,6 +1,6 @@
+<div id="part" class="part">
+    <h1>Делаем SQL-запросы...</h1></div>
 <div class="content">
-    <div id="part" class="part">
-        <h1>Делаем SQL-запросы...</h1></div>
     <form>
         <input type="text" name="query" value="<?php echo $name; ?>">
         <input type="submit" value="Поиск">

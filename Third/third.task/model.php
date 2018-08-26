@@ -118,3 +118,51 @@ function getProds()
     return $products;
 }
 
+function getXmlToDB($p)
+{
+
+    $ids = array();
+    foreach ($p as $q) {
+        $code = $q['code'];
+        $name = $q['name'];
+        $b_p = (int)$q['base_price'];
+        $m_p = (int)$q['moscow_price'];
+        $property = (string)key($q['properties']);
+        $value = (string)$q['properties']->{$property};
+        $part = $q['part'];
+        //SQL
+        $result = host("INSERT INTO `products` (`code`, `name`) VALUES ('$code', '$name')");
+        if (!$result)
+            echo 'not inserted to products';
+        $result = host("INSERT INTO `prices` (`#`, `name`, `price_type`, `price`) VALUES (NULL, '$name','Base', '$b_p')");
+        if (!$result)
+            echo 'not inserted to prices-base';
+        $result = host("INSERT INTO `prices` (`#`, `name`, `price_type`, `price`) VALUES (NULL, '$name','Moscow', '$m_p')");
+        if (!$result)
+            echo 'not inserted to prices-moscow';
+        $result = host("INSERT INTO `properties` (`name`, `property`,`type`, `value`) VALUES ('$name', '$property', '', '$value');");
+        if (!$result)
+            echo 'not inserted to properties';
+        $result = host("INSERT INTO `rubrics` ( `code`, `name`) VALUES ( '$code', '$part->Раздел')");
+        if (!$result)
+            echo 'not inserted to rubrics';
+    }
+}
+
+function getXml($name = '')
+{
+    $products = array();
+    $xml = simplexml_load_file($name);
+
+    for ($i = 0; $i < count($xml); $i++) {
+        $products[$i]['name'] = $xml->Товар[$i]->attributes()['Название'];
+        $products[$i]['code'] = $xml->Товар[$i]->attributes()['Код'];
+        $products[$i]['base_price'] = $xml->Товар[$i]->Цена[0];
+        $products[$i]['moscow_price'] = $xml->Товар[$i]->Цена[1];
+        $products[$i]['properties'] = $xml->Товар[$i]->Свойства;
+        $products[$i]['part'] = $xml->Товар[$i]->Разделы;
+    }
+    getXmlToDB($products);
+    return $products;
+}
+

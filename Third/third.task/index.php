@@ -13,3 +13,4 @@ include 'views/header.php';
 include 'first.php';
 include 'second.php';
 include 'DB.php';
+include 'xmlforms.php';
