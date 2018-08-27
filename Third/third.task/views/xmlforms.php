@@ -6,13 +6,16 @@
         <input type="file" name="file" accept="application/xml"><br>
         <input type="submit" value="Отправить">
     </form>
-    <details>
-        <summary>Раздел</summary>
-        <p>Я Дима</p>
-        <p>А я нет</p>
-    </details>
+    <hr>
     <a href="/export.php">Экспорт XML</a>
-    <?php getXml($fname);
+    <hr>
+    <form method="get" action="index.php">
+        <label>Ценовой фильтр <input type="number" value="<?php $_GET['filter'] ?>" name="filter"></label>
+        <input type="submit" value="Фильтр">
+    </form>
+    <?php if ($fname != null) getXml($fname);
+    $filter = isset($_GET['filter']) ? $_GET['filter'] : null;
+    goToHtml($filter);
     ?>
 </div>
 

@@ -233,3 +233,42 @@ function exportXml($products)
     return 'completed!';
 }
 
+function goToHtml($filter = null)
+{
+    $parts = array();
+    $result = host("SELECT `name` from `rubrics`");
+    while ($row = mysqli_fetch_assoc($result)) {
+        $parts[] = $row;
+    }
+    $parts = array_unique($parts, SORT_REGULAR);
+    $j = 0;
+    for ($i = 0; $i < 10; $i++)
+        if (isset($parts[$i])) {
+            $parts[$j] = $parts[$i];
+            $j++;
+        }
+    $parts = array_unique($parts, SORT_REGULAR);
+    for ($i = 0; $i < count($parts); $i++) {
+        $result = host("SELECT `code` FROM `rubrics` WHERE `name`='{$parts[$i]['name']}'");
+        while ($row = mysqli_fetch_assoc($result))
+            $codes[] = (int)$row['code'];
+        $parts[$i]['codes'] = $codes;
+        $codes = array();
+    }
+    foreach ($parts as $part) {
+        echo "<details><summary>{$part['name']}</summary><ul>";
+        foreach ($part['codes'] as $code) {
+            $result = host("SELECT `name` FROM `products` WHERE `code`='{$code}'");
+            $name = mysqli_fetch_row($result);
+            $result = host("SELECT `price` FROM `prices` WHERE `name`='$name[0]'");
+            while ($row = mysqli_fetch_assoc($result))
+                $prices[] = (float)$row['price'];
+            $min_price = min($prices);
+            $max_price = max($prices);
+            if ($filter >= $min_price && $filter <= $max_price)
+                echo "<li><details><summary>{$name[0]}</summary><p>Код: $code</p><p>Цена: {$min_price} - {$max_price}</p></details></li>";
+            $prices = array();
+        }
+        echo '</ul></details>';
+    }
+}
