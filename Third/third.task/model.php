@@ -130,23 +130,23 @@ function getXmlToDB($p)
         $part1 = (string)$q['part']->Раздел[0];
         $part2 = $q['part']->Раздел[1] != null ? '/' . (string)$q['part']->Раздел[1] : null;
 
-        //SQL ////// раскомментировать для заполнения БД
+        //SQL ////// 
 
-//        $result = host("INSERT INTO `products` (`code`, `name`) VALUES ('$code', '$name')");
-//        if (!$result)
-//            echo 'not inserted to products';
-//        $result = host("INSERT INTO `prices` (`#`, `name`, `price_type`, `price`) VALUES (NULL, '$name','Base', '$b_p')");
-//        if (!$result)
-//            echo 'not inserted to prices-base';
-//        $result = host("INSERT INTO `prices` (`#`, `name`, `price_type`, `price`) VALUES (NULL, '$name','Moscow', '$m_p')");
-//        if (!$result)
-//            echo 'not inserted to prices-moscow';
-//        $result = host("INSERT INTO `properties` (`name`, `property`,`type`, `value`) VALUES ('$name', '{$property}', '', '{$value}');");
-//        if (!$result)
-//            echo 'not inserted to properties';
-//        $result = host("INSERT INTO `rubrics` ( `code`, `name`) VALUES ('$code', '{$part1}/{$part2}')");
-//        if (!$result)
-//            echo 'not inserted to rubrics';
+        $result = host("INSERT INTO `products` (`code`, `name`) VALUES ('$code', '$name')");
+        if (!$result)
+            echo 'not inserted to products';
+        $result = host("INSERT INTO `prices` (`#`, `name`, `price_type`, `price`) VALUES (NULL, '$name','Base', '$b_p')");
+        if (!$result)
+            echo 'not inserted to prices-base';
+        $result = host("INSERT INTO `prices` (`#`, `name`, `price_type`, `price`) VALUES (NULL, '$name','Moscow', '$m_p')");
+        if (!$result)
+            echo 'not inserted to prices-moscow';
+        $result = host("INSERT INTO `properties` (`name`, `property`,`type`, `value`) VALUES ('$name', '{$property}', '', '{$value}');");
+        if (!$result)
+            echo 'not inserted to properties';
+        $result = host("INSERT INTO `rubrics` ( `code`, `name`) VALUES ('$code', '{$part1}/{$part2}')");
+        if (!$result)
+            echo 'not inserted to rubrics';
     }
 }
 
