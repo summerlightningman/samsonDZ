@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.7.7
+- https://www.phpmyadmin.net
+-
+- Хост: 127.0.0.1:3306
+- Время создания: Авг 27 2018 г., 17:39
+- Версия сервера: 5.6.38
+- Версия PHP: 5.5.38
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="test_rubric" collation="utf8_unicode_ci" charset="utf8">
+            <pma:table name="prices">
+                CREATE TABLE `prices` (
+                  `#` int(11) NOT NULL AUTO_INCREMENT,
+                  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                  `price_type` enum('Base','Moscow','','') COLLATE utf8_unicode_ci NOT NULL,
+                  `price` float NOT NULL,
+                  PRIMARY KEY (`#`),
+                  KEY `name` (`name`),
+                  KEY `Индекс 4` (`price_type`,`price`),
+                  CONSTRAINT `prices_ibfk_1` FOREIGN KEY (`name`) REFERENCES `products` (`name`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=178 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+            </pma:table>
+            <pma:table name="products">
+                CREATE TABLE `products` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `code` int(11) NOT NULL,
+                  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `id` (`id`,`code`,`name`),
+                  KEY `name` (`name`),
+                  KEY `Индекс 4` (`code`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+            </pma:table>
+            <pma:table name="properties">
+                CREATE TABLE `properties` (
+                  `№` int(11) NOT NULL AUTO_INCREMENT,
+                  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                  `property` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                  `type` enum('%','Вт','RGB','См','') COLLATE utf8_unicode_ci NOT NULL,
+                  `value` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+                  PRIMARY KEY (`№`),
+                  KEY `name` (`name`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+            </pma:table>
+            <pma:table name="rubrics">
+                CREATE TABLE `rubrics` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `code` int(11) NOT NULL,
+                  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `id` (`id`,`code`,`name`),
+                  KEY `Индекс 3` (`code`),
+                  CONSTRAINT `FK_rubrics_products` FOREIGN KEY (`code`) REFERENCES `products` (`code`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=279 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - База данных: 'test_rubric'
+    -->
+    <database name="test_rubric">
+        <!-- Таблица prices -->
+        <table name="prices">
+            <column name="#">1</column>
+            <column name="name">Бензопила Бобёр</column>
+            <column name="price_type">Base</column>
+            <column name="price">26.4</column>
+        </table>
+        <table name="prices">
+            <column name="#">2</column>
+            <column name="name">Бензопила Бобёр</column>
+            <column name="price_type">Moscow</column>
+            <column name="price">30</column>
+        </table>
+        <table name="prices">
+            <column name="#">3</column>
+            <column name="name">Ножовка</column>
+            <column name="price_type">Base</column>
+            <column name="price">6.99</column>
+        </table>
+        <table name="prices">
+            <column name="#">55</column>
+            <column name="name">Ножовка</column>
+            <column name="price_type">Moscow</column>
+            <column name="price">13</column>
+        </table>
+        <table name="prices">
+            <column name="#">56</column>
+            <column name="name">Линейка</column>
+            <column name="price_type">Base</column>
+            <column name="price">3.5</column>
+        </table>
+        <table name="prices">
+            <column name="#">57</column>
+            <column name="name">Линейка</column>
+            <column name="price_type">Moscow</column>
+            <column name="price">4.4</column>
+        </table>
+        <table name="prices">
+            <column name="#">170</column>
+            <column name="name">Бумага А4</column>
+            <column name="price_type">Base</column>
+            <column name="price">11</column>
+        </table>
+        <table name="prices">
+            <column name="#">171</column>
+            <column name="name">Бумага А4</column>
+            <column name="price_type">Moscow</column>
+            <column name="price">12</column>
+        </table>
+        <table name="prices">
+            <column name="#">172</column>
+            <column name="name">Бумага А3</column>
+            <column name="price_type">Base</column>
+            <column name="price">18</column>
+        </table>
+        <table name="prices">
+            <column name="#">173</column>
+            <column name="name">Бумага А3</column>
+            <column name="price_type">Moscow</column>
+            <column name="price">22</column>
+        </table>
+        <table name="prices">
+            <column name="#">174</column>
+            <column name="name">Принтер Canon</column>
+            <column name="price_type">Base</column>
+            <column name="price">3010</column>
+        </table>
+        <table name="prices">
+            <column name="#">175</column>
+            <column name="name">Принтер Canon</column>
+            <column name="price_type">Moscow</column>
+            <column name="price">3500</column>
+        </table>
+        <table name="prices">
+            <column name="#">176</column>
+            <column name="name">Принтер HP</column>
+            <column name="price_type">Base</column>
+            <column name="price">3310</column>
+        </table>
+        <table name="prices">
+            <column name="#">177</column>
+            <column name="name">Принтер HP</column>
+            <column name="price_type">Moscow</column>
+            <column name="price">2999</column>
+        </table>
+        <!-- Таблица products -->
+        <table name="products">
+            <column name="id">1</column>
+            <column name="code">101</column>
+            <column name="name">Бензопила Бобёр</column>
+        </table>
+        <table name="products">
+            <column name="id">2</column>
+            <column name="code">150</column>
+            <column name="name">Ножовка</column>
+        </table>
+        <table name="products">
+            <column name="id">3</column>
+            <column name="code">188</column>
+            <column name="name">Линейка</column>
+        </table>
+        <table name="products">
+            <column name="id">60</column>
+            <column name="code">201</column>
+            <column name="name">Бумага А4</column>
+        </table>
+        <table name="products">
+            <column name="id">61</column>
+            <column name="code">202</column>
+            <column name="name">Бумага А3</column>
+        </table>
+        <table name="products">
+            <column name="id">62</column>
+            <column name="code">302</column>
+            <column name="name">Принтер Canon</column>
+        </table>
+        <table name="products">
+            <column name="id">63</column>
+            <column name="code">305</column>
+            <column name="name">Принтер HP</column>
+        </table>
+        <!-- Таблица properties -->
+        <table name="properties">
+            <column name="№">1</column>
+            <column name="name">Бензопила Бобёр</column>
+            <column name="property">Мощность</column>
+            <column name="type">Вт</column>
+            <column name="value">100</column>
+        </table>
+        <table name="properties">
+            <column name="№">2</column>
+            <column name="name">Бензопила Бобёр</column>
+            <column name="property">Износ</column>
+            <column name="type">%</column>
+            <column name="value">0</column>
+        </table>
+        <table name="properties">
+            <column name="№">3</column>
+            <column name="name">Бензопила Бобёр</column>
+            <column name="property">Цвет</column>
+            <column name="type">RGB</column>
+            <column name="value">25500</column>
+        </table>
+        <table name="properties">
+            <column name="№">4</column>
+            <column name="name">Ножовка</column>
+            <column name="property">Износ</column>
+            <column name="type">%</column>
+            <column name="value">12</column>
+        </table>
+        <table name="properties">
+            <column name="№">5</column>
+            <column name="name">Ножовка</column>
+            <column name="property">Размер</column>
+            <column name="type">См</column>
+            <column name="value">30</column>
+        </table>
+        <table name="properties">
+            <column name="№">62</column>
+            <column name="name">Бумага А4</column>
+            <column name="property">Плотность</column>
+            <column name="type"></column>
+            <column name="value">100</column>
+        </table>
+        <table name="properties">
+            <column name="№">63</column>
+            <column name="name">Бумага А3</column>
+            <column name="property">Плотность</column>
+            <column name="type"></column>
+            <column name="value">90</column>
+        </table>
+        <table name="properties">
+            <column name="№">64</column>
+            <column name="name">Принтер Canon</column>
+            <column name="property">Формат</column>
+            <column name="type"></column>
+            <column name="value">A4</column>
+        </table>
+        <table name="properties">
+            <column name="№">65</column>
+            <column name="name">Принтер HP</column>
+            <column name="property">Формат</column>
+            <column name="type"></column>
+            <column name="value">A3</column>
+        </table>
+        <!-- Таблица rubrics -->
+        <table name="rubrics">
+            <column name="id">1</column>
+            <column name="code">101</column>
+            <column name="name">Строительные предметы</column>
+        </table>
+        <table name="rubrics">
+            <column name="id">2</column>
+            <column name="code">150</column>
+            <column name="name">Строительные предметы</column>
+        </table>
+        <table name="rubrics">
+            <column name="id">3</column>
+            <column name="code">188</column>
+            <column name="name">Измерительные приборы</column>
+        </table>
+        <table name="rubrics">
+            <column name="id">275</column>
+            <column name="code">201</column>
+            <column name="name">Бумага</column>
+        </table>
+        <table name="rubrics">
+            <column name="id">276</column>
+            <column name="code">202</column>
+            <column name="name">Бумага</column>
+        </table>
+        <table name="rubrics">
+            <column name="id">277</column>
+            <column name="code">302</column>
+            <column name="name">Принтеры/МФУ</column>
+        </table>
+        <table name="rubrics">
+            <column name="id">278</column>
+            <column name="code">305</column>
+            <column name="name">Принтеры/МФУ</column>
+        </table>
+    </database>
+</pma_xml_export>
