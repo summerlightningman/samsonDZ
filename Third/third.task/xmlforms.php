@@ -6,7 +6,7 @@
  * Time: 10:00
  */
 
-if (isset($_FILES['file']['name'])){
+if (isset($_FILES['file'])){
     $fname = $_FILES['file']['name'];
 }
 
